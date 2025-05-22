@@ -58,7 +58,9 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding-bottom: 10px;
     gap: 16px; /* Espaçamento entre os labels */
+    align-items: flex-end;
 }
 
 .chart_labels{
@@ -67,13 +69,33 @@ body{
     width: 100%;
     justify-content: space-between;
     gap: 16px; /* Espaçamento entre os labels */
+
+}
+
+.bar{
+    width: 100%;
+    height: 70%;
+    background-color: #ea745c;
+    border-radius: 5px;
+    flex: 1;
+    font-size: 12px;
+    margin: 0 5px; /* Espaço lateral opcional */
+    transition: height 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bar.animated{
+
+}
+
+.bar:hover{
+    background-color: #fd9a86;
 }
 
 .label {
     flex: 1;
     font-size: 12px;
     color: #92857a;
-    margin: 0 8px; /* Espaço lateral opcional */
+    margin: 0 13px; /* Espaço lateral opcional */
 }
 
 .summary{
