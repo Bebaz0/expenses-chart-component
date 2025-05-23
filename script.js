@@ -27,9 +27,28 @@ document.querySelectorAll('.bar').forEach(bar => {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
+  //Dictionary with the days o the week
+    const days = {
+        0: 'sun',
+        1: 'mon',
+        2: 'tue',
+        3: 'wed',
+        4: 'thu',
+        5: 'fri',
+        6: 'sat'
+    };
+  let dayofweek = new Date().getDay();
   document.querySelectorAll('.bar').forEach(bar => {
-
-
+    //checking if the bar is today and changing the color
+    if (bar.getAttribute('data-day') === days[dayofweek]) {
+      bar.style.backgroundColor = '#76B5BC';
+      bar.addEventListener('mouseenter', function () {
+        bar.style.backgroundColor = '#B4DFE5';
+      })
+        bar.addEventListener('mouseleave', function () {
+            bar.style.backgroundColor = '#76B5BC';
+        })
+    }
 
     //animation and height
     const value = bar.getAttribute('data-value');
@@ -38,4 +57,18 @@ document.addEventListener('DOMContentLoaded', function () {
       bar.classList.add('animated');
     }, 100);
   });
+  //changing month expenses
+    const monthExpenses = calculateMonthExpenses();
+    document.getElementById('total').textContent = monthExpenses;
 });
+
+//Function to handle the calculation of month expenses
+function calculateMonthExpenses() {
+  const bars = document.querySelectorAll('.bar');
+  let total = 0;
+  bars.forEach(bar => {
+    const value = parseFloat(bar.getAttribute('data-value'));
+    total += value;
+  });
+  return total;
+}
