@@ -1,5 +1,20 @@
 
 document.querySelectorAll('.bar').forEach(bar => {
+
+  fetch('data.json')
+      .then(response => response.json())
+        .then(data => {
+            // Loop through the data and set the bar values
+            data.forEach(item => {
+                const day = item.day;
+                const value = item.amount;
+                const barElement = document.querySelector(`.bar[data-day="${day}"]`);
+                if (barElement) {
+                barElement.setAttribute('data-value', value);
+                }
+            });
+        })
+
   bar.addEventListener('mouseenter', function () {
     const value = this.getAttribute('data-value');
     const tooltip = document.createElement('div');
